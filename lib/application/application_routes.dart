@@ -50,19 +50,19 @@ abstract class RouteGenerator {
 
   static Route<dynamic>? generateRoute(RouteSettings routeSettings) {
     try {
-      var itemLista = _applicationPages.where(
+      var firstPageListItem = _applicationPages.where(
         (element) {
           return element.name == routeSettings.name;
         },
       ).first;
 
-      if (routeSettings.name == itemLista.name) {
+      if (routeSettings.name == firstPageListItem.name) {
         return PageTransition(
-          child: itemLista.page,
-          type: itemLista.transition ?? defaultTransition,
+          child: firstPageListItem.page,
+          type: firstPageListItem.transition ?? defaultTransition,
           settings: routeSettings,
           alignment: Alignment.center,
-          childCurrent: itemLista.page,
+          childCurrent: firstPageListItem.page,
         );
       }
     } catch (e) {
