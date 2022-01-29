@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_estudos_geral/application/application_routes.dart';
 
@@ -8,7 +10,74 @@ class HomeView extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with RouteAware {
+  @override
+  void initState() {
+    log('HomeView_Method Override -> initState()');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    log('HomeView_Method Override -> dispose()');
+    routeUnsubcribe(this);
+    super.dispose();
+  }
+
+  @override
+  void activate() {
+    log('HomeView_Method Override -> activate()');
+    super.activate();
+  }
+
+  @override
+  void deactivate() {
+    log('HomeView_Method Override -> deactivate()');
+    super.deactivate();
+  }
+
+  @override
+  void reassemble() {
+    log('HomeView_Method Override -> reassemble()');
+    super.reassemble();
+  }
+
+  @override
+  void didChangeDependencies() {
+    log('HomeView_Method Override -> didChangeDependencies()');
+    super.didChangeDependencies();
+    routeSubscribe(context, this);
+  }
+
+  @override
+  void didUpdateWidget(HomeView oldWidget) {
+    log('HomeView_Method Override -> didUpdateWidget()');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didPop() {
+    log('HomeView_Method Override -> didPop()');
+    super.didPop();
+  }
+
+  @override
+  void didPopNext() {
+    log('HomeView_Method Override -> didPopNext()');
+  }
+
+  @override
+  void didPush() {
+    log('HomeView_Method Override -> didPush()');
+    super.didPush();
+  }
+
+  @override
+  void didPushNext() {
+    log('HomeView_Method Override -> didPushNext()');
+    super.didPushNext();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

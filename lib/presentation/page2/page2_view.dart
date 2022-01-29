@@ -1,19 +1,41 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_estudos_geral/application/application_routes.dart';
 
-class Page2View extends StatefulWidget {
-  final String title = "Page2View";
-
+class Page2View extends StatelessWidget with RouteAware {
   const Page2View({Key? key}) : super(key: key);
-  @override
-  _Page2ViewState createState() => _Page2ViewState();
-}
 
-class _Page2ViewState extends State<Page2View> {
+  @override
+  void didPop() {
+    log('Page2View_Method Override -> didPop()');
+    super.didPop();
+  }
+
+  @override
+  void didPopNext() {
+    log('Page2View_Method Override -> didPopNext()');
+  }
+
+  @override
+  void didPush() {
+    log('Page2View_Method Override -> didPush()');
+    super.didPush();
+  }
+
+  @override
+  void didPushNext() {
+    log('Page2View_Method Override -> didPushNext()');
+    super.didPushNext();
+  }
+
   @override
   Widget build(BuildContext context) {
+    routeSubscribe(context, this);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Page2View()'),
         centerTitle: true,
       ),
       body: Container(),

@@ -23,8 +23,13 @@ class RoutePage {
 }
 
 abstract class RouteGenerator {
+  static final RouteObserver<PageRoute> _pageRouteObserver = RouteObserver<PageRoute>();
+  static final RouteObserver<ModalRoute<void>> _modalRouteObserver = RouteObserver<ModalRoute<void>>();
+
   static String get initialRoute => RoutePaths.home;
   static PageTransitionType get defaultTransition => PageTransitionType.fade;
+  static RouteObserver<PageRoute> get pageRouteObserver => _pageRouteObserver;
+  static RouteObserver<ModalRoute<void>> get modalRouteObserver => _modalRouteObserver;
 
   static List<RoutePage> get _applicationPages => [
         RoutePage(
@@ -77,6 +82,17 @@ abstract class RouteGenerator {
 dynamic routeArguments(BuildContext context) {
   var arguments = ModalRoute.of(context)?.settings.arguments;
   return arguments;
+}
+
+routeSubscribe(BuildContext context, RouteAware routeAware) {
+  RouteGenerator.pageRouteObserver.subscribe(
+    routeAware,
+    ModalRoute.of(context) as PageRoute,
+  );
+}
+
+routeUnsubcribe(RouteAware routeAware) {
+  RouteGenerator.pageRouteObserver.unsubscribe(routeAware);
 }
 
 class DefaultErrorPage extends StatelessWidget {

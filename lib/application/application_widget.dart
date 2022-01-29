@@ -16,7 +16,10 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: RouteGenerator.initialRoute,
-      navigatorObservers: [],
+      navigatorObservers: [
+        RouteGenerator.pageRouteObserver,
+        RouteGenerator.modalRouteObserver,
+      ],
     );
   }
 }
