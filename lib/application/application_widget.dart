@@ -12,9 +12,11 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Exemplo Flutter',
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: ApplicationRoutes.generateRoute,
-      initialRoute: ApplicationRoutes.home,
+      onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute: RouteGenerator.initialRoute,
+      navigatorObservers: [],
     );
   }
 }

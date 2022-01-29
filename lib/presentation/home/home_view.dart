@@ -30,10 +30,6 @@ class _HomeViewState extends State<HomeView> {
                     Navigator.pushNamed(
                       context,
                       'NaoExiste',
-                      arguments: {
-                        'param1': 'pagina 1 valor 1',
-                        'param2': 'pagina 1 valor 2',
-                      },
                     );
                   },
                   child: Text('Erro'),
@@ -49,11 +45,7 @@ class _HomeViewState extends State<HomeView> {
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
-                      ApplicationRoutes.page1,
-                      arguments: {
-                        'param1': 'pagina 1 valor 1',
-                        'param2': 'pagina 1 valor 2',
-                      },
+                      RoutePaths.page1,
                     );
                   },
                   child: Text('Page 1'),
@@ -69,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
-                      ApplicationRoutes.page2,
+                      RoutePaths.page2,
                       arguments: {
                         'param1': 'pagina 2 valor 1',
                         'param2': 'pagina 2 valor 2',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_estudos_geral/application/application_routes.dart';
 
 class Page1View extends StatefulWidget {
   final String title = "Page1View";
@@ -11,11 +12,11 @@ class Page1View extends StatefulWidget {
 class _Page1ViewState extends State<Page1View> {
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? argumentos = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    var argumentos = routeArguments(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(argumentos['param1']),
+        title: argumentos != null ? Text(argumentos['title']) : Text('Page1View()'),
         centerTitle: true,
       ),
       body: Container(),
