@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_estudos_geral/application/application_routes.dart';
+import 'package:flutter_estudos_geral/presentation/page1/page1_controller.dart';
 
 class Page1View extends StatefulWidget {
   final String title = "Page1View";
@@ -79,16 +80,68 @@ class _Page1ViewState extends State<Page1View> with RouteAware {
     super.didPushNext();
   }
 
+  Page1Controller controller = Page1Controller();
+
   @override
   Widget build(BuildContext context) {
     var argumentos = routeArguments(context);
-
     return Scaffold(
       appBar: AppBar(
         title: argumentos != null ? Text(argumentos['title']) : Text('Page1View()'),
         centerTitle: true,
       ),
-      body: Container(),
+      body: Container(
+        alignment: Alignment.center,
+        child: Form(
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Person p = controller.lista.value[controller.selectedPerson.value];
+                      p.nome = DateTime.now().toIso8601String();
+                      controller.updateItem(controller.selectedPerson.value, p);
+                    },
+                    child: Text('Alter'),
+                  ),
+                ),
+                Expanded(
+                  child: ValueListenableBuilder(
+                    valueListenable: controller.selectedPerson,
+                    builder: (context, value, widget) {
+                      return ValueListenableBuilder(
+                        valueListenable: controller.lista,
+                        builder: (context, value, widget) {
+                          return ListView.builder(
+                            itemCount: controller.lista.value.length,
+                            itemBuilder: (context, i) {
+                              return InkWell(
+                                onTap: () {
+                                  controller.setSelectedPerson(i);
+                                },
+                                child: ListTile(
+                                  selectedTileColor: (controller.selectedPerson.value == i)
+                                      ? Colors.black.withAlpha(20)
+                                      : Colors.transparent,
+                                  selected: controller.selectedPerson.value == i,
+                                  title: Text(controller.lista.value[i].nome!),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
